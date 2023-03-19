@@ -24,6 +24,6 @@ jobs:
       - name: "Deploy to GHP"
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
-          folder: "./build"
+          folder: "build"
           target-folder: build
           branch: master
