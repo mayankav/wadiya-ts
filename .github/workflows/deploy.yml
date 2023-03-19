@@ -1,0 +1,29 @@
+name: "Build And Deploy to Github pages"
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout the repository"
+        uses: actions/checkout@v3
+      - name: "Use the node server"
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - name: "Get Dependencies and Build"
+        working-directory: ./
+        run: |
+          npm ci
+          npm run build
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
+      - name: "Deploy to GHP"
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          folder: "./build"
+          target-folder: build
+          branch: master
