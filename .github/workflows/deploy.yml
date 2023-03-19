@@ -26,4 +26,4 @@ jobs:
         with:
           folder: "build"
           target-folder: build
-          branch: master
+          branch: gh-pages
